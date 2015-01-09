@@ -1,0 +1,10 @@
+Package: StanCat
+Type: Package
+Title: Creates caterpillar plots from stanfit objects
+Version: 0.1
+Date: 2015-01-09
+Authors@R: as.person(c(
+    "Christopher Gandrud <christopher.gandrud@gmail.com> [aut, cre, cph]"
+    ))
+License: GPL-3
+LazyData: TRUE
