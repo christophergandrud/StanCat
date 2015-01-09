@@ -7,6 +7,9 @@ This package has one simple function: `stan_caterpillar`. It creates
 caterpillar plots for posterior distributions in `stanfit` objects created
 with [Stan](http://mc-stan.org/).
 
+You use regular expressions to identify the parameters, so that you can easily
+plot a number of parameters using very compact code.
+
 ## Example
 
 First run your Stan model as usual:
@@ -31,16 +34,16 @@ fit <- stan(model_code = scode, iter = 10000, verbose = FALSE)
 
 We can then use
 [regular expressions](http://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html)
-to identify all of the parameters that we want to plot. `y\\[.*\\]` in the example
-below identifies both y[1] and y[2] parameters.
+to identify all of the parameters that we want to plot. `y\\[.*\\]` in the
+example below identifies both the **y[1]** and **y[2]** parameters.
 
-Note that `\\[` is needed to include the square brackets as the square brackets
-that are used in the Stan model, rather than as the special `[]` regular
+Note that `\\[` and `\\]` are needed to include the square brackets as the
+square brackets in the Stan model, rather than as the special `[]` regular
 expressions brackets.
 
 
 ```r
-stan_caterpillar(fit, pars = 'y\\[.*\\]')
+StanCat::stan_caterpillar(fit, pars = 'y\\[.*\\]')
 ```
 
 ![plot of chunk Example1](figure/Example1-1.png) 
