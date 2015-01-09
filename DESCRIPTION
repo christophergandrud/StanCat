@@ -1,6 +1,9 @@
 Package: StanCat
 Type: Package
 Title: Creates caterpillar plots from stanfit objects
+Description: A simple package that plots posterior densities from Stan fitted
+    model objects. Parameters are selected using regular expressions allowing you
+    to plot many parameters at once with compact code.
 Version: 0.1
 Date: 2015-01-09
 Authors@R: as.person(c(
@@ -8,3 +11,9 @@ Authors@R: as.person(c(
     ))
 License: GPL-3
 LazyData: TRUE
+Imports:
+    coda,
+    dplyr,
+    ggplot2,
+    rstan,
+    tidyr

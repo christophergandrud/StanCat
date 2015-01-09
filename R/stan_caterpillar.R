@@ -1,7 +1,7 @@
 #' A function to create caterpillar plots from rstan's stanfit objects
 #'
 #' @param obj a \code{stanfit} object
-#' @param pars character string, vector, or regular expression of paramater
+#' @param pars scalar or vector regular expressions for paramater
 #' labels that you would like to plot as declared in \code{model_code} from the
 #' \code{\link{stan}} call.
 #' @param pars_labels vector of parameter labels for the output plot. Important:
@@ -19,29 +19,52 @@
 #' HPD/central intervals, and thick lines represent the 90% HPD/central
 #' intervals.
 #'
+#' @examples
+#' \dontrun{
+#' # Create Stan model
+#' library(rstan)
+#' scode <- "
+#'    parameters {
+#'        real y[2];
+#'    }
+#'    model {
+#'        y[1] ~ normal(0, 1);
+#'        y[2] ~ double_exponential(0, 2);
+#'    }
+#' "
+#'
+#' # Run
+#' fit <- stan(model_code = scode, iter = 10000, verbose = FALSE)
+#'
+#' # Plot y[1] and y[2] parameters
+#' stan_caterpillar(fit, pars = 'y\\[.*\\]')
+#' }
+#'
 #' @seealso \link{rstan}, \code{\link{stan}}, \code{ggmcmc}
 #'
 #' @import rstan
 #' @importFrom tidyr gather
-#' @importFrom dplyr group_by summarise
+#' @importFrom dplyr group_by summarise inner_join %>%
 #' @import ggplot2
 #'
 #' @export
 
-stan_catterpillar <- function(obj,
+stan_caterpillar <- function(obj,
                             pars,
                             pars_labels = NULL,
                             hpd = TRUE,
                             order_medians = TRUE,
                             horizontal = TRUE)
 {
+    variable <- value <- NULL
+
     # Extract all simulations
     sims <- as.data.frame(obj)
 
     # Extract only desired parameters
     names <- names(sims)
     sims_subset <- sims[, names %in% grep(pattern = pars, x = names,
-                                          value = TRUE)]
+                                          value = TRUE)] %>% data.frame()
 
     if (ncol(sims_subset) == 0) {
         stop("No parameters selected. \n", call. = FALSE)
