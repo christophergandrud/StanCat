@@ -11,8 +11,7 @@ with [Stan](http://mc-stan.org/).
 
 First run your Stan model as usual:
 
-
-```r
+```{r ExampleSetup, results='hide'}
 # Create Stan model
 library(rstan)
 scode <- "
@@ -38,19 +37,15 @@ Note that `\\[` is needed to include the square brackets as the square brackets
 that are used in the Stan model, rather than as the special `[]` regular
 expressions brackets.
 
-
-```r
+```{r Example1}
 stan_caterpillar(fit, pars = 'y\\[.*\\]')
 ```
-
-![plot of chunk Example1](figure/Example1-1.png) 
 
 
 ## Install
 
 Use devtools to install the package:
 
-
-```r
+```{r eval=FALSE}
 devtools::install_github('christophergandrud/StanCat')
 ```
