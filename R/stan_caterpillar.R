@@ -1,4 +1,4 @@
-#' A function to create caterpillar plots from rstan's stanfit objects
+#' Create caterpillar plots from rstan's stanfit objects
 #'
 #' @param obj a \code{stanfit} object
 #' @param pars scalar or vector regular expressions for paramater
