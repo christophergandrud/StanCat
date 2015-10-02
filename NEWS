@@ -1,3 +1,7 @@
-# Version 0.1
+## Version 0.2
+
+- Added argument to give uncertainty bounds transparency.
+
+## Version 0.1
 
 - Basic `stan_caterpillar` functionality.

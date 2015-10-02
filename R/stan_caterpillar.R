@@ -14,6 +14,8 @@
 #' medians.
 #' @param horizontal logical. Whether or not you would like the lines to be
 #' horizontal
+#' @param alpha_bounds numeric. Alpha transparency value for the uncertainty
+#' bounds.
 #'
 #' @details Points plot the simulations' medians, thin lines represent the 95%
 #' HPD/central intervals, and thick lines represent the 90% HPD/central
@@ -54,7 +56,8 @@ stan_caterpillar <- function(obj,
                             pars_labels = NULL,
                             hpd = TRUE,
                             order_medians = TRUE,
-                            horizontal = TRUE)
+                            horizontal = TRUE,
+                            alpha_bounds = 0.3)
 {
     variable <- value <- NULL
 
@@ -120,9 +123,11 @@ stan_caterpillar <- function(obj,
                                xmax = upper95)) +
             geom_point(size = 3) +
             geom_segment(aes(x = lower95, xend = upper95,
-                             yend = reorder(pars, medians)), size = 0.5) +
+                             yend = reorder(pars, medians)), size = 0.5,
+                             alpha = alpha_bounds) +
             geom_segment(aes(x = lower90, xend = upper90,
-                             yend = reorder(pars, medians)), size = 1.5) +
+                             yend = reorder(pars, medians)), size = 1.5,
+                             alpha = alpha_bounds) +
             xlab('') + ylab('') +
             theme_bw()
     }
@@ -132,9 +137,9 @@ stan_caterpillar <- function(obj,
                                xmax = upper95)) +
             geom_point(size = 3) +
             geom_segment(aes(x = lower95, xend = upper95, yend = pars),
-                         size = 0.5) +
+                         size = 0.5, alpha = alpha_bounds) +
             geom_segment(aes(x = lower90, xend = upper90,
-                             yend = pars), size = 1.5) +
+                             yend = pars), size = 1.5, alpha = alpha_bounds) +
             xlab('') + ylab('') +
             theme_bw()
     }

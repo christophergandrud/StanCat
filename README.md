@@ -18,6 +18,10 @@ First run your Stan model as usual:
 ```r
 # Create Stan model
 library(rstan)
+
+rstan_options(auto_write = TRUE)
+options(mc.cores = parallel::detectCores())
+
 scode <- "
     parameters {
         real y[2];
