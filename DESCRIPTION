@@ -17,3 +17,4 @@ Imports:
     ggplot2,
     rstan,
     tidyr
+RoxygenNote: 7.2.3

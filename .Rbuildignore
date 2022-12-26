@@ -1,4 +1,6 @@
+README_files/*
 ^.*\.Rproj$
 ^\.Rproj\.user$
 figure/
 README.Rmd
+^\.github$

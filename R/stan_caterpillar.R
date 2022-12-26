@@ -1,14 +1,14 @@
 #' Create caterpillar plots from rstan's stanfit objects
 #'
 #' @param obj a \code{stanfit} object
-#' @param pars scalar or vector regular expressions for paramater
+#' @param pars scalar or vector regular expressions for parameter
 #' labels that you would like to plot as declared in \code{model_code} from the
 #' \code{\link{stan}} call.
 #' @param pars_labels vector of parameter labels for the output plot. Important:
 #' they must be in the same order as in the \code{stanfit} object when
 #' \code{as.data.frame(obj)} is called.
-#' @param hpd logical. If \code{TRUE} then the 90% and 95% highest probability
-#' density intervals are found. If \code{FALSE} then the corresponding
+#' @param hpd logical. If \code{TRUE} then the 90\% and 95\% highest probability
+#' density intervals (HDI) are found. If \code{FALSE} then the corresponding
 #' central intervals are found.
 #' @param order_medians logical. Whether or not to order the points by their
 #' medians.
@@ -48,6 +48,7 @@
 #' @importFrom tidyr gather
 #' @importFrom dplyr group_by summarise inner_join %>%
 #' @import ggplot2
+#' @importFrom stats median quantile reorder
 #'
 #' @export
 

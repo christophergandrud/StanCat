@@ -1,5 +1,14 @@
+---
+output:
+    github_document
+---
+
 StanCat
 ===
+
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/christophergandrud/StanCat/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/christophergandrud/StanCat/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
 
 Version 0.2
 

@@ -1,21 +1,25 @@
-StanCat
-===
 
-Version 0.1
+# StanCat
+
+<!-- badges: start -->
+
+[![R-CMD-check](https://github.com/christophergandrud/StanCat/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/christophergandrud/StanCat/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
+
+Version 0.2
 
 This package has one simple function: `stan_caterpillar`. It creates
-caterpillar plots for posterior distributions in `stanfit` objects created
-with [Stan](http://mc-stan.org/).
+caterpillar plots for posterior distributions in `stanfit` objects
+created with [Stan](http://mc-stan.org/).
 
-You use regular expressions to identify the parameters, so that you can easily
-plot a number of parameters using very compact code.
+You use regular expressions to identify the parameters, so that you can
+easily plot a number of parameters using very compact code.
 
 ## Example
 
 First run your Stan model as usual:
 
-
-```r
+``` r
 # Create Stan model
 library(rstan)
 
@@ -36,28 +40,26 @@ scode <- "
 fit <- stan(model_code = scode, iter = 10000, verbose = FALSE)
 ```
 
-We can then use
-[regular expressions](http://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html)
-to identify all of the parameters that we want to plot. `y\\[.*\\]` in the
-example below identifies both the **y[1]** and **y[2]** parameters.
+We can then use [regular
+expressions](http://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html)
+to identify all of the parameters that we want to plot. `y\\[.*\\]` in
+the example below identifies both the **y\[1\]** and **y\[2\]**
+parameters.
 
-Note that `\\[` and `\\]` are needed to include the square brackets as the
-square brackets in the Stan model, rather than as the special `[]` regular
-expressions brackets.
+Note that `\\[` and `\\]` are needed to include the square brackets as
+the square brackets in the Stan model, rather than as the special `[]`
+regular expressions brackets.
 
-
-```r
+``` r
 StanCat::stan_caterpillar(fit, pars = 'y\\[.*\\]')
 ```
 
-![plot of chunk Example1](figure/Example1-1.png) 
-
+![](README_files/figure-gfm/Example1-1.png)<!-- -->
 
 ## Install
 
 Use devtools to install the package:
 
-
-```r
+``` r
 devtools::install_github('christophergandrud/StanCat')
 ```
